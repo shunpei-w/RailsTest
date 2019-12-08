@@ -1,0 +1,11 @@
+<h1>カテゴリー作成</h1>
+<p> ※登録するカテゴリーを入力してください。</p>
+    <%= form_for(@menuCategory,url:{controller:"menu_cotegories",action:"add"}) do |form| %>
+    <table>
+        <tr><th>カテゴリー</th>
+            <td><%= form.text_field :categoryName, {size:40} %></td></tr>
+            <td><%= form.submit "登録" %></td></tr>
+        </tr>
+        <% end %>
+    </table>
+<p class="link"><a href="/menu_cotegories"> ※トップページに戻る</a></p>

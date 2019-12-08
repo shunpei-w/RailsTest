@@ -1,0 +1,58 @@
+<h1>飲食店メニュー管理一覧</h1>
+<table width="100%">
+<tr>
+<th>ID</th><th> メニュー名</th>
+<th> カテゴリ</th>
+<th> 価格</th>
+<th> 原価</th>
+<th> 原価率</th>
+<th> ステータス</th>
+ </tr>
+        <% @menus.each do |obj| %>
+            <tr>
+                <td width="1px"><%= obj.id %></td>
+                <td width="10px"><a href="/menus/<%= obj.id %>"><%= obj.name %></a></td>
+                <td width="10px"><%= obj.category %></td>
+                <td width="10px"><%= obj.price %>円</td>
+                <td width="10px"><%= obj.cost %>円</td>
+                <% @costrate = obj.cost.to_f/obj.price*100 %>
+                <td width="10px"><%= @costrate.round(1) %>%</td>
+                <td width="10px"><%= obj.status %></td>
+                <td width="10px"><a href="/menus/edit/<%= obj.id %>"> 編集</a></td>
+                <td width="10px"><%= link_to '削除', "/menus/#{obj.id}", method: :delete,data: { confirm: "'#{obj.name}'"' を削除しますか？' } %></td>
+            </tr>
+        <% end %>
+  
+</table>
+
+
+
+
+<p class="link"><a href="/menus/add">※新しいデータを入力 </a></p>
+<p class="link"><a href="/menu_cotegories">カテゴリーを追加 </a></p>
+
+
+        並び替え　　　　　
+        <%= form_tag(controller:"menus", action:"index") do %>
+        <%= select_tag(:sort, options_for_select(
+            [["IDの昇順","IDの昇順"],["IDの降順","IDの降順"],["登録日時の新しい順","登録日時の新しい順"],["登録日時の古い順","登録日時の古い順"]],selected: params[:sort]))%>
+                     <%= submit_tag "並び替え" %></th>
+        <% end %>
+       絞り込み　　　　
+        <%# <%= form_for(@refine,url:{controller:"menus", action:"index"}) do |f| %>
+        <%# <%= f.collection_select :categoryName, MenuCategory.all, :categoryName,:categoryName,include_blank: "選択してください",selected: params[:categoryName]%>
+        <%# <%= submit_tag "絞り込み" %>
+        <%# <% end %>
+
+
+        <%= form_tag(controller:"menus", action:"index") do %>
+        <%= select_tag(:status, options_for_select([["選択してください","選択してください"],["提供中","提供中"],["停止中","停止中"]],selected: params[:status]))%>
+        <%= submit_tag "絞り込み" %></th>
+        <% end %>
+
+        メニュー名で検索
+        <%= form_tag(controller:"menus",action:"index" ) do %>
+        <%= text_field_tag "find", @searchWord  %>
+        <%= submit_tag("検索") %>
+        <% end %>
+<div><%= link_to "ログイン画面へ".html_safe,{action:'login_check'} %></div>

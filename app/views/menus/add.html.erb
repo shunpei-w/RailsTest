@@ -1,0 +1,29 @@
+<h1>メニュー作成</h1>
+<p> ※登録するメニューデータを入力してください。</p>
+    <%= form_for(@menu,url:{controller:"menus",action:"add"}) do |form| %>
+    <table>
+        <tr><th>メニュー</th>
+            <td><%= form.text_field :name, {size:40} %></td></tr>
+        <tr><th>カテゴリー</th>
+            <td><%= form.collection_select :category, MenuCategory.all, :categoryName, :categoryName %></td>
+        <tr><th>価格</th>
+            <td><%= form.number_field :price, {size:40} %>円</td></tr>
+        <tr><th>原価</th>
+            <td><%= form.number_field :cost, {size:40} %>円</td></tr>
+        <tr><th>カロリー</th>
+            <td><%= form.number_field :calorie, {size:40} %>cal</td></tr>
+        <tr><th>ステータス</th>
+            <td><%= form.select :status, [["提供中","提供中"],["停止中","停止中"]],:prompt => "選択してください" %></td></tr>
+        <tr><th>備考</th>
+            <td><%= form.text_field :memo, {cols:40,rows:10} %></td></tr>
+        </tr>    
+        <tr><th></th>
+            <td><%= form.submit "保存" %></td></tr>
+        </tr>
+
+        <% end %>
+    </table>
+<p class="link"><a href="/menus"> ※トップページに戻る</a></p> 
+<% if @menu.errors.any? %>
+   <p>エラーでーす。</p>
+<% end %>

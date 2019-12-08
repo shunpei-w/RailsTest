@@ -1,0 +1,16 @@
+<h1>メニューカテゴリー一覧</h1>
+<table width="100%">
+<tr>
+    <th>ID</th>
+    <th>カテゴリー</th>
+</tr>
+        <% @menuCotegories.each do |obj| %>
+            <tr>
+                <td width="30px"><%= obj.id %></td>
+                <td width="30px"><%= obj.categoryName %></td>
+                <td width="15px"><a href="/menu_cotegories/edit/<%= obj.id %>"> 編集</a></td>
+                <td width="15px"><%= link_to '削除', "/menu_cotegories/#{obj.id}", method: :delete,data: { confirm: "'#{obj.categoryName}'"' を削除しますか？' } %></td>
+            </tr>
+        <% end %>
+</table>
+<p class="link"><a href="/menu_cotegories/add">※新しいデータを入力</a></p>

@@ -1,0 +1,27 @@
+<h1>「<%= @menu.name %>」の詳細</h1>
+<table>
+    <tr><th width="100px">Id</th>
+        <td><%= @menu.id %></td></tr>
+    <tr><th>メニュー</th>
+        <td><%= @menu.name %></td></tr>
+    <tr><th>カテゴリ</th>
+        <td><%= @menu.category %></td></tr>
+    <tr><th>価格</th>
+        <td><%= @menu.price %>円</td></tr>
+    <tr><th>原価</th>
+        <td><%= @menu.cost %>円</td></tr>
+    <tr><th>原価率</th>
+        <% @costrate = @menu.cost/@menu.price.to_d*100%>
+        <td><%= @costrate %>％</td></tr>
+    <tr><th>カロリー</th>
+        <td><%= @menu.calorie %>cal</td></tr>
+    <tr><th>ステータス</th>
+        <td><%= @menu.status %></td></tr>
+    <tr><th>登録日時</th>
+        <td><%= @menu.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td></tr>
+    <tr><th>備考</th>
+        <td><%= @menu.memo %></td></tr>
+
+    </tr>
+</table>
+<p class="link"><a href="/menus">&lt;&lt; ※一覧に戻る</a></p>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  category: MyText
+  price: 1
+  cost: 1
+  costRate: 1
+  status: MyText
+  calorie: 1
+  date: 2019-12-01 11:52:28
+  memo: MyText
+
+two:
+  name: MyText
+  category: MyText
+  price: 1
+  cost: 1
+  costRate: 1
+  status: MyText
+  calorie: 1
+  date: 2019-12-01 11:52:28
+  memo: MyText
