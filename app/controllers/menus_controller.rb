@@ -2,17 +2,15 @@ class MenusController < ApplicationController
 
   def index
     @menus = Menu.all
-    logger.debug("2")
-
     @searchWord = params[:find]
     @refine = Menu.new
     
-    if params[:commit] == "絞り込み"
-      @menus = MenuCategory.where categoryName: params[:categoryName]
+    # if params[:commit] == "絞り込み"
+    #   @menus = MenuCategory.where categoryName: params[:categoryName]
 
-      logger.debug("^^^^^^^^^")
-      logger.debug("ここもだよ")
-    end
+    #   logger.debug("^^^^^^^^^")
+    #   logger.debug("ここもだよ")
+    # end
 
     if params[:sort] == "IDの昇順"
       @menus = Menu.all.order(id: "asc")
